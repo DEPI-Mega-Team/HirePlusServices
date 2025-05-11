@@ -31,7 +31,4 @@ cols = st.columns(len(buttons))
 for col, button in zip(cols, buttons):
     with col:
         st.image(button["image_url"], use_container_width=True)
-        if st.button(button["label"], use_container_width=True):
-            st.experimental_set_query_params(page=button["link"])
-            st.markdown(f'<meta http-equiv="refresh" content="0; url={button["link"]}">', unsafe_allow_html=True)
-            st.rerun()
+        st.markdown(f"[{button['label']}]({button['link']})", unsafe_allow_html=True)
