@@ -1,5 +1,4 @@
 import streamlit as st
-import webbrowser
 
 # Set page configuration
 st.set_page_config(page_title="HirePlus AI Services", layout="wide")
@@ -33,5 +32,6 @@ for col, button in zip(cols, buttons):
     with col:
         st.image(button["image_url"], use_container_width=True)
         if st.button(button["label"], use_container_width=True):
-            webbrowser.open_new_tab(button["link"])
+            st.experimental_set_query_params(page=button["link"])
+            st.markdown(f'<meta http-equiv="refresh" content="0; url={button["link"]}">', unsafe_allow_html=True)
             st.rerun()
