@@ -65,7 +65,7 @@ st.divider()
 # --- LANDING PAGE ---
 if app_choice in ["Landing Page", None]:
     st.title("Welcome to HirePlus Services!")
-    st.image("https://via.placeholder.com/800x300.png?text=Welcome+to+HirePlus", use_container_width=True)
+    st.image(os.path.join(BASE_DIR, 'cover.png'), use_container_width=True)
     st.markdown(
         """
         ### Why Choose HirePlus?
