@@ -172,7 +172,7 @@ if app_choice == "Job Recommender":
 
     with st.spinner("Loading jobs..."):
         print("Loading jobs ...")
-        jobs: pd.DataFrame = pickle.load(open(os.path.join(cs.workspace_dir, 'jobs.pkl'), 'rb'))
+        jobs: pd.DataFrame = pickle.load(open(os.path.join(cs.workspace_dir, 'jobs.pkl'), 'rb'))[:1000]
         print("Jobs Loaded successfully")
 
         ids = [i for i in range(len(jobs))]
@@ -187,15 +187,15 @@ if app_choice == "Job Recommender":
                 work_type=jb['work_type']
             )
 
+    with st.spinner("Loading job embeddings..."):
+        missing_ids = db.get_missing_job_ids(ids)
+        if missing_ids:
+            for _id in tqdm(missing_ids):
+                jb = job_objs[_id]
+                embeddings = job_embed.embed(jb.model_copy())
+                db.store_job_embeddings(jb.job_id, embeddings)
 
-    missing_ids = db.get_missing_job_ids(ids)
-    if missing_ids:
-        for _id in tqdm(missing_ids):
-            jb = job_objs[_id]
-            embeddings = job_embed.embed(jb.model_copy())
-            db.store_job_embeddings(jb.job_id, embeddings)
-
-    print("Jobs stored successfully")
+    print("Job Embeddings loaded successfully")
 
     if st.session_state.users is None:
         with st.sidebar and st.spinner("Loading users..."):
