@@ -405,7 +405,8 @@ if app_choice == "Job Recommender":
         title = st.slider("Title", min_value=0.0, max_value=1.0, step=0.1, value=weight.title)
         content = st.slider("About", min_value=0.0, max_value=1.0, step=0.1, value=weight.content)
         work_type = st.slider("Work Type", min_value=0.0, max_value=1.0, step=0.1, value=weight.work_type)
-        st.markdown(f"**Summation of weights:** {title + content + work_type}")
+        summation = round(title + content + work_type, 1)
+        st.markdown(f"**Summation of weights:** {summation}")
         
         set_weights = st.button("Set Weights", use_container_width=True)
         if set_weights:
@@ -413,7 +414,7 @@ if app_choice == "Job Recommender":
             weight.content = content
             weight.work_type = work_type
             
-            if weight.title + weight.content + weight.work_type != 1.0:
+            if summation != 1.0:
                 st.warning("The sum of weights should equal 1.0")
             else:
                 st.session_state.weights = weight
