@@ -71,6 +71,7 @@ if app_choice in ["Landing Page", None]:
     st.markdown(
         """
         ### Why Choose HirePlus?
+        - **📊 Dashboard**: Gain insights into job market trends, salary distributions, and job availability across various locations.
         - **📄 Resume Analyzer**: Quickly analyze your resume and streamline your job applications.
         - **🤖 Interview Chatbot**: Prepare for interviews with an AI-driven virtual assistant.
         - **💼 Job Recommender**: Get personalized job recommendations based on your skills and preferences.
@@ -99,6 +100,7 @@ if app_choice in ["Landing Page", None]:
             """)
             if st.button("Go to Dashboard", use_container_width= True):
                 st.session_state.choice = "Dashboard"
+        
         with st.expander("\U0001F4CB Resume Analyzer"):
             st.markdown("""
             - Quickly analyze your resume and streamline your job applications.
