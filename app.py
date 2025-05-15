@@ -91,6 +91,14 @@ if app_choice in ["Landing Page", None]:
     col1, col2 = st.columns(2)
 
     with col1:
+        with st.expander("📊 Dashboard"):
+            st.markdown("""
+            - Visualize job market trends and insights.
+            - Explore job distribution, salary trends, and more.
+            - Make informed decisions based on data analysis.
+            """)
+            if st.button("Go to Dashboard", use_container_width= True):
+                st.session_state.choice = "Dashboard"
         with st.expander("\U0001F4CB Resume Analyzer"):
             st.markdown("""
             - Quickly analyze your resume and streamline your job applications.
@@ -98,6 +106,7 @@ if app_choice in ["Landing Page", None]:
             """)
             if st.button("Go to Resume Analyzer", use_container_width= True):
                 st.session_state.choice = "Resume Analyzer"
+            
 
     with col2:
         with st.expander("\U0001F916 Interview Chatbot"):
